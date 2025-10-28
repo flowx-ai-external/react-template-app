@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageTemplate } from '../components/PageTemplate/PageTemplate';
+import { DetailLayout, BreadcrumbItem, ActionButton } from '../components/DetailLayout';
 import { Card } from '../components/Card/Card';
 import { PrimeChart } from '../components/Chart/PrimeChart';
 import { FlxButton } from '@flowx/react-ui-toolkit';
@@ -9,137 +9,165 @@ const KitchenSinkPage: React.FC = () => {
   // Line Chart Example Data
   const lineChartData = {
     data: {
-      type: 'line' as const,
-      chartData: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-        datasets: [
-          {
-            label: 'Sales 2024',
-            data: [65, 59, 80, 81, 56, 55],
-            fill: false,
-            borderColor: '#42A5F5',
-            tension: 0.4
+      ChartData: {
+        type: 'line' as const,
+        chartData: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          datasets: [
+            {
+              label: 'Sales 2024',
+              data: [65, 59, 80, 81, 56, 55],
+              fill: false,
+              borderColor: '#0066CC',
+              backgroundColor: '#0066CC',
+              tension: 0.4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top' as const,
+            },
+            title: {
+              display: true,
+              text: 'Monthly Sales'
+            }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top' as const,
-          },
-          title: {
-            display: true,
-            text: 'Monthly Sales'
-          }
-        }
-      },
-      height: '300px'
+        },
+        height: '300px'
+      }
     }
   };
 
   // Bar Chart Example Data
   const barChartData = {
     data: {
-      type: 'bar' as const,
-      chartData: {
-        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-        datasets: [
-          {
-            label: '2023',
-            backgroundColor: '#42A5F5',
-            data: [50, 75, 100, 125]
-          },
-          {
-            label: '2024',
-            backgroundColor: '#FFA726',
-            data: [60, 85, 110, 140]
+      ChartData: {
+        type: 'bar' as const,
+        chartData: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+          datasets: [
+            {
+              label: '2023',
+              backgroundColor: '#3385DB',
+              data: [50, 75, 100, 125]
+            },
+            {
+              label: '2024',
+              backgroundColor: '#0066CC',
+              data: [60, 85, 110, 140]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top' as const,
+            },
+            title: {
+              display: true,
+              text: 'Quarterly Comparison'
+            }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top' as const,
-          },
-          title: {
-            display: true,
-            text: 'Quarterly Comparison'
-          }
-        }
-      },
-      height: '300px'
+        },
+        height: '300px'
+      }
     }
   };
 
   // Pie Chart Example Data
   const pieChartData = {
     data: {
-      type: 'pie' as const,
-      chartData: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green'],
-        datasets: [
-          {
-            data: [300, 150, 100, 80],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+      ChartData: {
+        type: 'pie' as const,
+        chartData: {
+          labels: ['Primary', 'Secondary', 'Success', 'Info'],
+          datasets: [
+            {
+              data: [300, 150, 100, 80],
+              backgroundColor: ['#0066CC', '#3385DB', '#10b981', '#0052A3'],
+              hoverBackgroundColor: ['#0052A3', '#0066CC', '#059669', '#003d7a']
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom' as const,
+            }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom' as const,
-          }
-        }
-      },
-      height: '300px'
+        },
+        height: '300px'
+      }
     }
   };
 
   // Doughnut Chart Example Data
   const doughnutChartData = {
     data: {
-      type: 'doughnut' as const,
-      chartData: {
-        labels: ['Desktop', 'Mobile', 'Tablet'],
-        datasets: [
-          {
-            data: [450, 320, 180],
-            backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726'],
-            hoverBackgroundColor: ['#42A5F5', '#66BB6A', '#FFA726']
+      ChartData: {
+        type: 'doughnut' as const,
+        chartData: {
+          labels: ['Desktop', 'Mobile', 'Tablet'],
+          datasets: [
+            {
+              data: [450, 320, 180],
+              backgroundColor: ['#0066CC', '#3385DB', '#10b981'],
+              hoverBackgroundColor: ['#0052A3', '#0066CC', '#059669']
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right' as const,
+            },
+            title: {
+              display: true,
+              text: 'Device Usage'
+            }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'right' as const,
-          },
-          title: {
-            display: true,
-            text: 'Device Usage'
-          }
-        }
-      },
-      height: '300px'
+        },
+        height: '300px'
+      }
     }
   };
 
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', path: '/' },
+    { label: 'Kitchen Sink' },
+  ];
+
+  const actions: ActionButton[] = [
+    {
+      label: 'Export',
+      onClick: () => console.log('Export clicked'),
+      variant: 'secondary',
+    },
+    {
+      label: 'Refresh',
+      onClick: () => window.location.reload(),
+      variant: 'primary',
+    },
+  ];
+
   return (
-    <PageTemplate>
+    <DetailLayout
+      title="Kitchen Sink"
+      subtitle="A collection of all available components and their variations"
+      breadcrumbs={breadcrumbs}
+      actions={actions}
+    >
       <div className="kitchen-sink-page">
-        <div className="page-header">
-          <h1>Kitchen Sink - Component Examples</h1>
-          <p>A collection of all available components and their variations</p>
-        </div>
 
         <div className="components-grid">
         <Card
@@ -266,7 +294,7 @@ const KitchenSinkPage: React.FC = () => {
         </Card>
         </div>
       </div>
-    </PageTemplate>
+    </DetailLayout>
   );
 };
 

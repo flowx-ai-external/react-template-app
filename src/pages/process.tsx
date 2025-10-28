@@ -1,13 +1,30 @@
 import React from 'react';
-import { PageTemplate } from '../components/PageTemplate/PageTemplate';
+import { DetailLayout, BreadcrumbItem, ActionButton } from '../components/DetailLayout';
 import Process from '../process.tsx'
 
 const ProcessPage: React.FC = () => {
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', path: '/' },
+    { label: 'Process' },
+  ];
+
+  const actions: ActionButton[] = [
+    {
+      label: 'Back',
+      onClick: () => window.history.back(),
+      variant: 'secondary',
+    },
+  ];
 
   return (
-    <PageTemplate>
+    <DetailLayout
+      title="Process Renderer"
+      subtitle="FlowX process execution and visualization"
+      breadcrumbs={breadcrumbs}
+      actions={actions}
+    >
       <Process />
-    </PageTemplate>
+    </DetailLayout>
   );
 };
 

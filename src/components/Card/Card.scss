@@ -1,36 +1,38 @@
+@use '../../styles/variables.scss' as *;
+
 .card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  background: $bg-secondary;
+  border: 1px solid $border-light;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6;
+  margin-bottom: $spacing-6;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $transition-base;
 
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: $shadow-md;
   }
 
   .card-header {
-    margin-bottom: 16px;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 12px;
+    margin-bottom: $spacing-4;
+    border-bottom: 1px solid $border-light;
+    padding-bottom: $spacing-3;
 
     .card-title {
-      margin: 0 0 8px 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #333;
+      margin: 0 0 $spacing-2 0;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
     }
 
     .card-description {
       margin: 0;
-      font-size: 0.875rem;
-      color: #666;
+      font-size: $font-size-sm;
+      color: $text-secondary;
     }
   }
 
   .card-content {
-    padding-top: 8px;
+    padding-top: $spacing-2;
   }
 }

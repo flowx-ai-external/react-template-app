@@ -5,9 +5,11 @@ import { environment } from './environment'
 import { environment as prodEnvironment } from './environment.prod'
 
 import ProcessPage from './pages/process'
+import HomePage from './pages/home'
 import LandingPage from './pages/landing'
+import DiscoverPage from './pages/discover'
+import HistoryPage from './pages/history'
 import KitchenSinkPage from './pages/kitchensink'
-import { Header } from './components/Header/Header'
 
 const { keycloak } = import.meta.env.DEV ? environment : prodEnvironment
 
@@ -34,9 +36,11 @@ function App() {
   return (
     <AuthProvider {...oidcConfig}>
       <BrowserRouter>
-        <Header />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/launcher" element={<LandingPage />} />
+          <Route path="/discover" element={<DiscoverPage />} />
+          <Route path="/history" element={<HistoryPage />} />
           <Route path="/process" element={<ProcessPage />} />
           <Route path="/kitchen-sink" element={<KitchenSinkPage />} />
         </Routes>

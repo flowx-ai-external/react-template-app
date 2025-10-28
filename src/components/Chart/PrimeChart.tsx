@@ -18,7 +18,7 @@ export const PrimeChart = ({ data }: Record<string, any>) => {
 // export const PrimeChart = ( data : any) => {
 
   // Extract chart configuration from data.data
-  const config: PrimeChartConfig | undefined = data?.data?.ChartData;
+  const config: PrimeChartConfig | undefined = data?.data.ChartData;
 
   // console.log("HELP!!")
   console.log(data)

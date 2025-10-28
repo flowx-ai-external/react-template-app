@@ -1,0 +1,99 @@
+@use '../../styles/variables.scss' as *;
+
+.discover-panel {
+  position: fixed;
+  left: calc($sidebar-width-collapsed + $spacing-8);
+  top: $spacing-4;
+  width: 420px;
+  height: calc(100vh - #{$spacing-8});
+  background-color: $bg-secondary;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-xl;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  transition: left $transition-base;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-6;
+    border-bottom: 1px solid $border-light;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-md;
+    color: $text-secondary;
+    background: transparent;
+    transition: all $transition-fast;
+
+    &:hover {
+      background-color: $bg-sidebar-hover;
+      color: $text-primary;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-6;
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-secondary;
+    margin: 0 0 $spacing-4 0;
+  }
+
+  &__prompts {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__prompt-item {
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    background-color: $bg-primary;
+    border: 1px solid $border-light;
+    border-radius: $border-radius-md;
+    font-size: $font-size-sm;
+    color: $text-primary;
+    text-align: left;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: $primary-blue;
+      background-color: rgba(0, 102, 204, 0.05);
+      transform: translateX(4px);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .discover-panel {
+    left: $spacing-4;
+    width: calc(100vw - #{$spacing-8});
+  }
+}

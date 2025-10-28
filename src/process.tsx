@@ -243,7 +243,7 @@ export default function ProcessComponent() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const { processName, themeId, projectInfo, buildId, locale, language, cache } =
+  const { processName, themeId, projectInfo, buildId, locale, language, cache, workspaceId } =
     useMemo(() => {
       const searchParams = new URLSearchParams(location.search)
       return {
@@ -253,6 +253,7 @@ export default function ProcessComponent() {
           projectId: searchParams.get('appId') || '',
         },
         buildId: searchParams.get('buildId') || '',
+        workspaceId: searchParams.get('workspaceId') || '',
         locale: searchParams.get('locale') || 'en-US',
         language: searchParams.get('language') || 'en',
         cache: searchParams.get('cache') === 'true',
@@ -282,9 +283,10 @@ export default function ProcessComponent() {
         authToken={auth.userData?.access_token}
         themeId={themeId}
         processName={processName}
-        processStartData={{ testData: 'abc' }}
+        processStartData={{ text: 'abc' }}
         processApiPath={processApiPath}
         isDraft={false}
+        workspaceId={workspaceId}
         components={{
           FlxCustomComponent,
           FlxCustomValidationComponent,
