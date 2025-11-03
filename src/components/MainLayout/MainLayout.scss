@@ -1,0 +1,69 @@
+@use '../../styles/variables.scss' as *;
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: $bg-primary;
+
+  &__content {
+    flex: 1;
+    margin-left: calc($sidebar-width-expanded + $spacing-8);
+    min-height: 100vh;
+    transition: margin-left $transition-base;
+    display: flex;
+    flex-direction: column;
+
+    // When sidebar is collapsed, adjust margin
+    .sidebar--collapsed ~ & {
+      margin-left: calc($sidebar-width-collapsed + $spacing-8);
+    }
+  }
+
+  &__header {
+    padding: $spacing-5 $spacing-6;
+    background-color: transparent;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__logo-text {
+    color: $text-primary;
+  }
+
+  &__logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-1 $spacing-2;
+    background-color: $text-primary;
+    color: $text-white;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    border-radius: $border-radius-sm;
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .main-layout {
+    &__content {
+      margin-left: $sidebar-width-collapsed;
+
+      .sidebar--collapsed ~ & {
+        margin-left: 0;
+      }
+    }
+  }
+}
