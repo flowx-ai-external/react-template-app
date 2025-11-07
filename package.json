@@ -19,6 +19,7 @@
     "air-datepicker": "^3.5.3",
     "axios": "^1.7.7",
     "chart.js": "4.5.1",
+    "jotai": "2.15.1",
     "oidc-react": "^3.2.2",
     "primeicons": "7.0.0",
     "primereact": "10.9.7",

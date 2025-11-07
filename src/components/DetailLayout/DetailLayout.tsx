@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar } from '../Sidebar';
 import './DetailLayout.scss';
+import {bridgeAtom} from '../../atoms/bridge.ts'
+import { useAtom } from 'jotai'
 
 export interface BreadcrumbItem {
   label: string;
@@ -10,6 +12,7 @@ export interface BreadcrumbItem {
 
 export interface ActionButton {
   label: string;
+  id: string;
   onClick: () => void;
   variant?: 'primary' | 'secondary' | 'danger';
   icon?: React.ReactNode;
@@ -30,10 +33,63 @@ export const DetailLayout: React.FC<DetailLayoutProps> = ({
   title,
   subtitle,
   breadcrumbs = [],
-  actions = [],
+  actions: initialActions = [],
   className = '',
   showLogo = true,
 }) => {
+
+  // const [bridge] = useAtom(bridgeAtom);
+  // const [actions, setActions] = React.useState<ActionButton[]>(initialActions);
+  // const id = "bridge"
+  //
+  // React.useEffect(() => {
+  //   console.log("Current bridge in DetailLayout:", bridge);
+  //
+  //   if(bridge == undefined) {
+  //     return
+  //   }
+  //
+  //   const newAction = {
+  //     label: bridge || "test",
+  //     id: id,
+  //     onClick: () => console.log(bridge + " clicked"),
+  //     variant:  'primary' as const,
+  //   };
+  //
+  //   setActions(prevActions => {
+  //     const existingIndex = prevActions.findIndex(action => action.id === id);
+  //
+  //     if(existingIndex > -1) {
+  //       const updatedActions = [...prevActions];
+  //       updatedActions[existingIndex] = newAction;
+  //       return updatedActions;
+  //     } else {
+  //       return [...prevActions, newAction];
+  //     }
+  //   });
+  //
+  // }, [bridge, id]);
+
+  const [bridge] = useAtom(bridgeAtom);
+
+  const actions = React.useMemo<ActionButton[]>(() => {
+    const baseActions = initialActions.filter(a => a.id !== "bridge");
+
+    if (bridge?.name && bridge?.onClick) {
+      return [
+        ...baseActions,
+        {
+          label: bridge.name,
+          id: "bridge",
+          onClick: bridge.onClick,
+          variant: 'primary' as const,
+        }
+      ];
+    }
+
+    return baseActions;
+  }, [bridge]);
+
   return (
     <div className={`detail-layout ${className}`}>
       <Sidebar />

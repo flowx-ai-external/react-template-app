@@ -1,7 +1,7 @@
 import React from 'react';
 import { DetailLayout, BreadcrumbItem, ActionButton } from '../components/DetailLayout';
 import { Card } from '../components/Card/Card';
-import { PrimeChart } from '../components/Chart/PrimeChart';
+import { PrimeChart } from '../components/FlowX/Chart/PrimeChart';
 import { FlxButton } from '@flowx/react-ui-toolkit';
 import './kitchensink.scss';
 

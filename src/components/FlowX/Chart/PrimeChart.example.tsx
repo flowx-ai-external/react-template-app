@@ -1,5 +1,5 @@
 import React from 'react';
-import { PrimeChart, PrimeChartConfig } from './PrimeChart';
+import { PrimeChart, PrimeChartConfig } from './PrimeChart.tsx';
 
 const PrimeChartExample: React.FC = () => {
   // Example 1: Line Chart

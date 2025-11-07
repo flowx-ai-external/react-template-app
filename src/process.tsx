@@ -8,7 +8,8 @@ import { isValid, isWeekend, parse, parseISO } from 'date-fns'
 import { clearResourcesCache } from '@flowx/core-sdk'
 import { environment } from './environment'
 import { environment as prodEnvironment } from './environment.prod'
-import { PrimeChart } from './components/Chart/PrimeChart.tsx'
+import { PrimeChart } from './components/FlowX/Chart/PrimeChart.tsx'
+import { BridgeComponent } from './components/FlowX/BridgeComponent.tsx'
 
 const validators = {
   customValidator:
@@ -297,7 +298,8 @@ export default function ProcessComponent() {
           FlxTrueValidateComponent,
           FlxCustomLengthComponent,
           FlxCustomCollectionPrototypeComponent,
-          PrimeChart
+          PrimeChart,
+          BridgeComponent,
         }}
         validators={validators}
         staticAssetsPath={staticAssetsPath}
