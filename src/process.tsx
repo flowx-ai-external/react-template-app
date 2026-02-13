@@ -26,8 +26,10 @@ export default function ProcessComponent() {
     return {
       startProcess: <div>Starting the process...</div>,
       reloadProcess: <div>Loading...</div>,
-      action1: <div>Loading action1...</div>,
-      action2: <div>Loading action2...</div>,
+      actions:{
+        action1: <div>Loading action1...</div>,
+        action2: <div>Loading action2...</div>,
+      }
     }
   }, [])
 
@@ -46,7 +48,7 @@ export default function ProcessComponent() {
     return () => {
       document.removeEventListener('flowx:analytics', analyticsListener)
     }
-  }, [])
+  }, [analyticsListener])
 
   return (
     auth.userData?.access_token && (

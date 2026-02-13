@@ -4,7 +4,7 @@ Starter template for React app with FlowX Renderer SDK.
 
 ## Prerequisites
 
-- Node.js min version 18 - [Download Node.js](https://nodejs.org/en/blog/release/v18.12.0)
+- Node.js min version 24 - [Download Node.js](https://nodejs.org/en/download)
 - React 18
 
 ## Getting Started
@@ -30,6 +30,7 @@ export const environment = {
   ...
   baseUrl: '<BASE_URL>',
   staticAssetsPath: '<STATIC_ASSETS_PATH>',
+  orgCode: '<ORG_CODE>',
   ...
   keycloak: {
     issuer: '<KEYCLOAK_URL>',
