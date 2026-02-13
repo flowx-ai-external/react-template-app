@@ -64,18 +64,21 @@ In `package.json` file, update the FlowX package versions in accordance with the
 npm install
 ```
 
+- Configure the details of the running process
+
+In `src/process.tsx` file, update the process details parameters:
+
+```ts
+  processName = 'PROCESS_NAME';
+  themeId = 'THEME_ID';
+  projectInfo = {projectId: 'PROJECT_ID'}
+  workspaceId = 'WORKSPACE_ID';
+``` 
+
 - Start the Vite Development server:
 
 ```
 npm run dev
-```
-
-- Change the name of the running process
-
-In `src/pages/main/main.tsx` file, update the `startProcess` method parameter with the name, projectId and optionally the theme id of the process to be run.
-
-```html
-<button onClick={() => startProcess('<PROCESS_NAME>', '<PROJECT_ID>', <THEME_ID>)}>Start Demo Process</button>
 ```
 
 ### Prerequisites & Documentation

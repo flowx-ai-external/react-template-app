@@ -13,7 +13,7 @@ import { useLanguage } from './hooks/useLanguage'
 const { baseUrl, staticAssetsPath, processApiPath } = environment
 
 const processName = '<PROCESS_NAME>'
-const projectId = '<PROJECT_ID>'
+const projectId = {projectId: '<PROJECT_ID>'}
 const themeId = '<THEME_ID>'
 const workspaceId = '<WORKSPACE_ID>'
 const processStartData = {}
@@ -63,7 +63,7 @@ export default function ProcessComponent() {
         components={{ MyCustomComponentIdentifier: MyCustomComponent }}
         staticAssetsPath={staticAssetsPath}
         locale="en-US"
-        projectInfo={{ projectId }}
+        projectInfo={projectId}
         onProcessEnded={handleProcessEnded}
         customLoader={customLoader}
         cache={false}
