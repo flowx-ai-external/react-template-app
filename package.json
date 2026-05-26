@@ -10,23 +10,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@flowx/core-sdk": "10.71.0",
-    "@flowx/core-theme": "10.71.0",
-    "@flowx/react-sdk": "10.71.0",
-    "@flowx/react-theme": "10.71.0",
-    "@flowx/react-ui-toolkit": "10.71.0",
+    "@flowx/core-sdk": "10.206.1",
+    "@flowx/core-theme": "10.206.1",
+    "@flowx/react-sdk": "10.206.1",
+    "@flowx/react-theme": "10.206.1",
+    "@flowx/react-ui-toolkit": "10.206.1",
     "ag-grid-react": "^32.3.1",
     "air-datepicker": "^3.6.0",
     "axios": "^1.13.5",
     "oidc-react": "^3.4.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.3"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^6.25.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^4.7.0",
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.2.0",

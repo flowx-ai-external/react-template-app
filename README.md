@@ -5,7 +5,7 @@ Starter template for React app with FlowX Renderer SDK.
 ## Prerequisites
 
 - Node.js min version 24 - [Download Node.js](https://nodejs.org/en/download)
-- React 18
+- React 19
 
 ## Getting Started
 

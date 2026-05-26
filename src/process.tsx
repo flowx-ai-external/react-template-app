@@ -37,6 +37,10 @@ export default function ProcessComponent() {
     console.log('Process has ended')
   }, [])
 
+  const handleProcessStarted = useCallback((processInstanceUuid: string) => {
+    console.log('Process has started with processInstanceUuid: ', processInstanceUuid)
+  }, [])
+
   const analyticsListener = useCallback((event: Event) => {
     const { detail } = event as CustomEvent<AnalyticsData>
     console.log('Received flowx:analytics event:', detail);
@@ -67,6 +71,7 @@ export default function ProcessComponent() {
         locale="en-US"
         projectInfo={projectId}
         onProcessEnded={handleProcessEnded}
+        onProcessStarted={handleProcessStarted}
         customLoader={customLoader}
         cache={false}
       />
