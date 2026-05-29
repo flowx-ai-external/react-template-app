@@ -16,6 +16,7 @@ const processName = '<PROCESS_NAME>'
 const projectId = {projectId: '<PROJECT_ID>'}
 const themeId = '<THEME_ID>'
 const workspaceId = '<WORKSPACE_ID>'
+const organizationId = '<ORG_ID>'
 const processStartData = {}
 
 export default function ProcessComponent() {
@@ -63,6 +64,7 @@ export default function ProcessComponent() {
         processName={processName}
         processStartData={processStartData}
         workspaceId={workspaceId}
+        organizationId={organizationId}
         processApiPath={processApiPath}
         themeId={themeId}
         isDraft={false}
