@@ -76,6 +76,7 @@ export default function ProcessComponent() {
         onProcessStarted={handleProcessStarted}
         customLoader={customLoader}
         cache={false}
+        logSink={console.log}
       />
     )
   )
