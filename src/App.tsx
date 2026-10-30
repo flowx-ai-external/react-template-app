@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { AuthProvider, AuthProviderProps } from 'oidc-react'
 
+import { formattedLogger, logSink } from '@flowx/core-sdk'
+
 import { environment } from './environment'
 
 import Process from './process'
@@ -39,6 +41,9 @@ function App() {
   const [oidcConfig, setOidcConfig] = useState<AuthProviderProps | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // Streams REST, SSE and expression events of every renderer to the console
+  useEffect(() => logSink(formattedLogger), [])
 
   useEffect(() => {
     const initializeOidcConfig = async () => {

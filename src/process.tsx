@@ -1,7 +1,7 @@
 import { useAuth } from 'oidc-react'
 import { useEffect, useCallback, useMemo } from 'react'
 
-import { AnalyticsData } from '@flowx/core-sdk'
+import { AnalyticsData, HttpRequestInterceptor, HttpResponseInterceptor } from '@flowx/core-sdk'
 import { FlxProcessRenderer } from '@flowx/react-sdk'
 
 import { environment } from './environment'
@@ -10,7 +10,7 @@ import { MyCustomComponent } from './components/MyCustomComponent/MyCustomCompon
 
 import { useLanguage } from './hooks/useLanguage'
 
-const { baseUrl, staticAssetsPath, processApiPath } = environment
+const { baseUrl, assetsBaseUrl, enginePath } = environment
 
 const processName = '<PROCESS_NAME>'
 const projectId = {projectId: '<PROJECT_ID>'}
@@ -19,20 +19,45 @@ const workspaceId = '<WORKSPACE_ID>'
 const organizationId = '<ORG_ID>'
 const processStartData = {}
 
+// Keys must match the custom validator names defined in the process
+const validators = {
+  customValidator: (...params: string[]) => (v: string) => v === params[0],
+}
+
 export default function ProcessComponent() {
   const auth = useAuth()
   const { getSelectedLanguage } = useLanguage()
 
-  const customLoader = useMemo(() => {
+  const customLoaderProvider = useMemo(() => {
     return {
       startProcess: <div>Starting the process...</div>,
       reloadProcess: <div>Loading...</div>,
+      defaultAction: <div>Running action...</div>,
+      defaultUpload: <div>Uploading...</div>,
       actions:{
         action1: <div>Loading action1...</div>,
         action2: <div>Loading action2...</div>,
       }
     }
   }, [])
+
+  const requestInterceptors = useMemo<HttpRequestInterceptor[]>(() => [
+    {
+      onFulfilled: (config) => {
+        config.headers.set('X-Custom-Header', 'react-template-app')
+        return config
+      },
+    },
+  ], [])
+
+  const responseInterceptors = useMemo<HttpResponseInterceptor[]>(() => [
+    {
+      onRejected: (error) => {
+        console.error('FlowX request failed:', error)
+        return Promise.reject(error)
+      },
+    },
+  ], [])
 
   const handleProcessEnded = useCallback(() => {
     console.log('Process has ended')
@@ -58,23 +83,26 @@ export default function ProcessComponent() {
   return (
     auth.userData?.access_token && (
       <FlxProcessRenderer
-        apiUrl={baseUrl}
+        baseUrl={baseUrl}
         language={getSelectedLanguage().value}
-        authToken={auth.userData?.access_token}
+        accessToken={auth.userData?.access_token}
         processName={processName}
         processStartData={processStartData}
         workspaceId={workspaceId}
         organizationId={organizationId}
-        processApiPath={processApiPath}
+        enginePath={enginePath}
         themeId={themeId}
         isDraft={false}
         components={{ MyCustomComponentIdentifier: MyCustomComponent }}
-        staticAssetsPath={staticAssetsPath}
+        validators={validators}
+        assetsBaseUrl={assetsBaseUrl}
         locale="en-US"
         projectInfo={projectId}
         onProcessEnded={handleProcessEnded}
         onProcessStarted={handleProcessStarted}
-        customLoader={customLoader}
+        customLoaderProvider={customLoaderProvider}
+        requestInterceptors={requestInterceptors}
+        responseInterceptors={responseInterceptors}
         cache={false}
       />
     )

@@ -23,13 +23,14 @@ strict-ssl=true
 
 - Add environment endpoints
 
-In `src/environments/environment.ts` file, update the `flowx` object with the values provided by FlowX.
+In `src/environment.ts` file, update the values provided by FlowX.
 
 ```ts
 export const environment = {
   ...
   baseUrl: '<BASE_URL>',
-  staticAssetsPath: '<STATIC_ASSETS_PATH>',
+  assetsBaseUrl: '<ASSETS_BASE_URL>',
+  enginePath: 'onboarding',
   orgCode: '<ORG_CODE>',
   ...
   keycloak: {
