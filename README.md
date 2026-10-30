@@ -23,7 +23,7 @@ strict-ssl=true
 
 - Add environment endpoints
 
-In `src/environments/environment.ts` file, update the `flowx` object with the values provided by FlowX.
+In `src/environment.ts` file, update the values provided by FlowX.
 
 ```ts
 export const environment = {

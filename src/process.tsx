@@ -1,8 +1,8 @@
 import { useAuth } from 'oidc-react'
 import { useEffect, useCallback, useMemo } from 'react'
 
-import { AnalyticsData } from '@flowx/core-sdk'
-import { FlxProcessRenderer } from '@flowx/react-sdk'
+import { AnalyticsData, HttpRequestInterceptor, HttpResponseInterceptor } from '@flowx/core-sdk'
+import { FlxProcessRenderer, formattedLogger } from '@flowx/react-sdk'
 
 import { environment } from './environment'
 
@@ -19,6 +19,11 @@ const workspaceId = '<WORKSPACE_ID>'
 const organizationId = '<ORG_ID>'
 const processStartData = {}
 
+// Keys must match the custom validator names defined in the process
+const validators = {
+  customValidator: (...params: string[]) => (v: string) => v === params[0],
+}
+
 export default function ProcessComponent() {
   const auth = useAuth()
   const { getSelectedLanguage } = useLanguage()
@@ -27,12 +32,32 @@ export default function ProcessComponent() {
     return {
       startProcess: <div>Starting the process...</div>,
       reloadProcess: <div>Loading...</div>,
+      defaultAction: <div>Running action...</div>,
+      defaultUpload: <div>Uploading...</div>,
       actions:{
         action1: <div>Loading action1...</div>,
         action2: <div>Loading action2...</div>,
       }
     }
   }, [])
+
+  const requestInterceptors = useMemo<HttpRequestInterceptor[]>(() => [
+    {
+      onFulfilled: (config) => {
+        config.headers.set('X-Custom-Header', 'react-template-app')
+        return config
+      },
+    },
+  ], [])
+
+  const responseInterceptors = useMemo<HttpResponseInterceptor[]>(() => [
+    {
+      onRejected: (error) => {
+        console.error('FlowX request failed:', error)
+        return Promise.reject(error)
+      },
+    },
+  ], [])
 
   const handleProcessEnded = useCallback(() => {
     console.log('Process has ended')
@@ -69,14 +94,17 @@ export default function ProcessComponent() {
         themeId={themeId}
         isDraft={false}
         components={{ MyCustomComponentIdentifier: MyCustomComponent }}
+        validators={validators}
         staticAssetsPath={staticAssetsPath}
         locale="en-US"
         projectInfo={projectId}
         onProcessEnded={handleProcessEnded}
         onProcessStarted={handleProcessStarted}
         customLoader={customLoader}
+        requestInterceptors={requestInterceptors}
+        responseInterceptors={responseInterceptors}
         cache={false}
-        logSink={console.log}
+        logSink={formattedLogger}
       />
     )
   )
